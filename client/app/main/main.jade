@@ -1,0 +1,30 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+header#banner.hero-unit
+  .container
+    h1 ChatRec
+    p.lead Google音声認識とキーワード自動検索ができるチャットルームです
+
+.container
+  .row
+    .col-lg-12
+      h1.page-header チャットルーム
+      ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='room in rooms')
+        li
+          a(ng-href='/room/{{room._id}}')
+            | {{room.name}}
+
+  form.thing-form
+    i.fa.fa-flag
+    | &nbsp; チャットルームを作ってみよう
+    p.input-group
+      input.form-control(type='text', placeholder='第1回：音声認識の会', ng-model='_room.name')
+      span.input-group-btn
+        button.btn.btn-primary(type='submit', ng-click='addRoom()') 作成
+
+footer.footer
+  .container
+    p
+      | ChatRec v0.0.1
+      = ' | '
+      a(href='https://twitter.com/hkomachi') @hkomachi

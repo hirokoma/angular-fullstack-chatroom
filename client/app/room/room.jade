@@ -1,0 +1,61 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.container-fluid
+  .row
+
+    //----------------
+    // 左カラム
+    //----------------
+    .col-sm-2.hidden-xs(style="background:rgba(248,248,248,0.0); position:fixed; left:0; top:50px; bottom:0; padding-top:10px;")
+      div(style="background:rgba(231,231,231,1.0); width:1px; position: absolute; right:0; top:0; bottom:0;")
+      h4
+        i.fa.fa-flag
+        | &nbsp; {{room.name}}
+      hr
+      h5
+        i.fa.fa-user
+        | &nbsp; メンバーリスト
+
+
+    //----------------
+    // 中央カラム
+    //----------------
+    .col-sm-7.col-sm-offset-2(style="padding-top:20px;")
+      div(ng-repeat="comment in comments" style="background:transparent; margin:0;")
+        div(style="width:58px; float:left; background:transparent;")
+          img(src="/assets/images/yeoman.png" style="width:100%;")
+        div(style="width:auto; margin-left:58px; padding-top:10px; background:transparent;")
+          .alert.alert-success(style="margin:5px; padding:10px; border-radius:0px 20px 20px 20px; fleat:left;")
+            {{comment.text}}
+          div(style="clear:both;")
+
+
+    //----------------
+    // 中央カラムの下部
+    //----------------
+    .col-sm-7.col-sm-offset-2(style="position:fixed; bottom:0; background:rgba(248,248,248,1.0);")
+      div(style="background:rgba(231,231,231,1.0); height:1px; position: absolute; left:0; top:0; right:0px;")
+      .container-fluid
+        .row
+          .col-sm-12
+            form
+              p.input-group(style="margin:8px 0 8px 0;")
+                input.form-control(type='text', placeholder='こんにちは', ng-model='_comment.text')
+                span.input-group-btn
+                  button.btn.btn-success(type='submit', ng-click='addComment()') 送信
+
+
+    //----------------
+    // 右カラム
+    //----------------
+    .col-sm-3.hidden-xs(style="background:rgba(100,100,100,0.1); position:fixed; right:0; top:50px; bottom:0; padding-top:10px;")
+      div(style="background:rgba(231,231,231,1.0); width:1px; position: absolute; left:0; top:0; bottom:0;")
+      h4
+        i.fa.fa-info-circle
+        | &nbsp; お役立ち情報
+      hr
+      .alert.alert-info(ng-repeat="tip in tips" style="padding:5px;")
+        i.fa.fa-question-circle
+        | &nbsp; {{tip.keyword}}
+        hr(style="margin:5px;")
+        | {{tip.content}}
